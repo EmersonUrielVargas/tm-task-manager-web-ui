@@ -32,7 +32,7 @@ jobs:
                 npm run build -- "--base-href=\"tm-task-manager-web-ui/\""
 
             - name: Debug Output
-              run: ls -R build
+              run: grep 'base href' build/browser/index.html
 
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
