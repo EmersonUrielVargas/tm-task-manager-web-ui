@@ -31,8 +31,13 @@ jobs:
                 npm ci
                 npm run build
 
+            - name: Debug Output
+              run: ls -R dist
+
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
+              with:
+                path: build/browser
 
     deploy:
         environment:
