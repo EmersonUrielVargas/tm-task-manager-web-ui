@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
     build:
-        runs-on: ubuntu-lastest
+        runs-on: ubuntu-latest
         concurrency: ci-${{github.ref}}
         steps:
             - name: Checkout
