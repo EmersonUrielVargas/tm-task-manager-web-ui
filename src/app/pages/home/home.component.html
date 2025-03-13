@@ -1,0 +1,8 @@
+<h1>{{title}}</h1>
+<ul>
+    @for (task of tasks(); track $index) {
+    <li class="w-screen">
+        <task [task]="task"></task>
+    </li>
+    }
+</ul>
