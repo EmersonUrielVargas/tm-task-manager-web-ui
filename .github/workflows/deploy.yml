@@ -29,7 +29,7 @@ jobs:
             - name: Install dependecies
               run: |
                 npm ci
-                npm run build -- --base-href "/tm-task-manager-web-ui/"
+                npm run build -- "--base-href=\"tm-task-manager-web-ui/\""
 
             - name: Debug Output
               run: ls -R build
