@@ -32,7 +32,7 @@ jobs:
                 npm run build
 
             - name: Debug Output
-              run: ls -R dist
+              run: ls -R build
 
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
