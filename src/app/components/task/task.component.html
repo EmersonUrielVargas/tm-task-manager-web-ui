@@ -1,6 +1,6 @@
 <form [formGroup]="taskForm" class="w-full">
     <div class="task-container w-full flex gap-2 py-3 px-1 box-border rounded-sm bg-gray-50 border-amber-50 border shadow-sm shadow-gray-400">
-        <div class="flex peer h-8 rounded-full cursor-pointer w-2/12 justify-center">
+        <div class="flex peer h-8 rounded-full cursor-pointer w-2/12 max-w-15 justify-center">
             <label [for]="`${task.id}'checkTask'`" class="relative rounded-full w-8/10 border border-gray-300 bg-gray-200 has-checked:bg-amber-100 has-checked:border-amber-300">
                 <input type="checkbox" [id]="`${task.id}'checkTask'`" class="sr-only peer" [checked]="taskEditable().status === taskEnum.COMPLETE" (change)="onChangeStatus($event)"/>
                 <span class="w-3/6 h-6/8 absolute top-1 left-1 bg-gray-500 rounded-full peer-checked:bg-amber-400 peer-checked:right-1 peer-checked:left-auto"></span>
