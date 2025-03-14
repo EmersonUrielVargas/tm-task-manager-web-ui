@@ -1,8 +1,8 @@
 <h1>{{title}}</h1>
-<ul>
+<div class="flex w-full flex-col box-border gap-1.5 px-1">
     @for (task of tasks(); track $index; let index = $index) {
-        <div class="w-screen">
-            <task [task]="task"></task>
+        <div class="flex flex-grow-1">
+            <task [task]="task" class="w-full"></task>
         </div>
     }
-</ul>
+</div>

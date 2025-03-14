@@ -1,21 +1,93 @@
-<form [formGroup]="taskForm">
-    <div class="task-container grid grid-flow-col grid-cols-5 w-full justify-between p-3">
-        <div class="flex w-full h-8 rounded-full cursor-pointer justify-center">
-            <label [for]="`${task.id}'checkTask'`" class="relative rounded-full w-8/10 border border-gray-300 bg-gray-200 has-checked:bg-amber-50 has-checked:border-amber-200">
+<form [formGroup]="taskForm" class="w-full">
+    <div class="task-container w-full flex gap-2 py-3 px-1 box-border rounded-sm bg-gray-50 border-amber-50 border shadow-sm shadow-gray-400">
+        <div class="flex peer h-8 rounded-full cursor-pointer w-2/12 justify-center">
+            <label [for]="`${task.id}'checkTask'`" class="relative rounded-full w-8/10 border border-gray-300 bg-gray-200 has-checked:bg-amber-100 has-checked:border-amber-300">
                 <input type="checkbox" [id]="`${task.id}'checkTask'`" class="sr-only peer" [checked]="taskEditable().status === taskEnum.COMPLETE" (change)="onChangeStatus($event)"/>
                 <span class="w-3/6 h-6/8 absolute top-1 left-1 bg-gray-500 rounded-full peer-checked:bg-amber-400 peer-checked:right-1 peer-checked:left-auto"></span>
             </label>
         </div>
-        <div class="task-content col-span-3">
-            <h3>{{taskEditable().title}}</h3>
+        <div class="task-content flex flex-col w-7/12 gap-1 whitespace-normal peer-has-checked:line-through peer-has-checked:w-10/12">
+            <h3 class="font-bold">{{taskEditable().title}}</h3>
             <p>{{taskEditable().description}}</p>
-            <p>{{taskEditable().status}}</p>
         </div>
-        <button class="edit bg-amber-300 ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21 15.998v-6c0-2.828 0-4.242-.879-5.121C19.353 4.109 18.175 4.012 16 4H8c-2.175.012-3.353.109-4.121.877C3 5.756 3 7.17 3 9.998v6c0 2.829 0 4.243.879 5.122c.878.878 2.293.878 5.121.878h6c2.828 0 4.243 0 5.121-.878c.879-.88.879-2.293.879-5.122" opacity="0.5"/><path fill="currentColor" d="M8 3.5A1.5 1.5 0 0 1 9.5 2h5A1.5 1.5 0 0 1 16 3.5v1A1.5 1.5 0 0 1 14.5 6h-5A1.5 1.5 0 0 1 8 4.5z"/><path fill="currentColor" fill-rule="evenodd" d="M8.97 10.47a.75.75 0 0 1 1.06 0L12 12.44l1.97-1.97a.75.75 0 1 1 1.06 1.06l-1.97 1.97l1.97 1.97a.75.75 0 0 1-1.06 1.06L12 14.56l-1.97 1.97a.75.75 0 0 1-1.06-1.06l1.97-1.97l-1.97-1.97a.75.75 0 0 1 0-1.06" clip-rule="evenodd"/></svg>
-        </button>
-        <button class="remove ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3 10c0-3.771 0-5.657 1.172-6.828S7.229 2 11 2h2c3.771 0 5.657 0 6.828 1.172S21 6.229 21 10v4c0 3.771 0 5.657-1.172 6.828S16.771 22 13 22h-2c-3.771 0-5.657 0-6.828-1.172S3 17.771 3 14z" opacity="0.5"/><path fill="currentColor" d="M16.519 16.501c.175-.136.334-.295.651-.612l3.957-3.958c.096-.095.052-.26-.075-.305a4.3 4.3 0 0 1-1.644-1.034a4.3 4.3 0 0 1-1.034-1.644c-.045-.127-.21-.171-.305-.075L14.11 12.83c-.317.317-.476.476-.612.651q-.243.311-.412.666c-.095.2-.166.414-.308.84l-.184.55l-.292.875l-.273.82a.584.584 0 0 0 .738.738l.82-.273l.875-.292l.55-.184c.426-.142.64-.212.84-.308q.355-.17.666-.412m5.849-5.809a2.163 2.163 0 1 0-3.06-3.059l-.126.128a.52.52 0 0 0-.148.465c.02.107.055.265.12.452c.13.375.376.867.839 1.33s.955.709 1.33.839c.188.065.345.1.452.12a.53.53 0 0 0 .465-.148z"/><path fill="currentColor" fill-rule="evenodd" d="M7.25 9A.75.75 0 0 1 8 8.25h6.5a.75.75 0 0 1 0 1.5H8A.75.75 0 0 1 7.25 9m0 4a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H8a.75.75 0 0 1-.75-.75m0 4a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 0 1.5H8a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg>
-        </button>
+        <div class="buttons-container w-3/12 justify-center flex items-center gap-1 peer-has-checked:hidden">
+            <button class="edit bg-green-50 border border-green-200 w-9 h-9 justify-items-center rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6/10" viewBox="0 0 16 16">
+                    <g fill="none">
+                        <path fill="url(#fluentColorDrafts160)" d="M1 2.75A.75.75 0 0 1 1.75 2h10.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75" />
+                        <path fill="url(#fluentColorDrafts167)" fill-opacity="0.7" d="M1 2.75A.75.75 0 0 1 1.75 2h10.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75" />
+                        <path fill="url(#fluentColorDrafts161)" d="M1 5.25a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 1 5.25" />
+                        <path fill="url(#fluentColorDrafts168)" fill-opacity="0.7" d="M1 5.25a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 1 5.25" />
+                        <path fill="url(#fluentColorDrafts162)" d="M1 7.75A.75.75 0 0 1 1.75 7h5.5a.75.75 0 0 1 0 1.5h-5.5A.75.75 0 0 1 1 7.75" />
+                        <path fill="url(#fluentColorDrafts169)" fill-opacity="0.7" d="M1 7.75A.75.75 0 0 1 1.75 7h5.5a.75.75 0 0 1 0 1.5h-5.5A.75.75 0 0 1 1 7.75" />
+                        <path fill="url(#fluentColorDrafts163)" d="M2.657 9.635L9.75 2.543l3.707 3.707l-7.093 7.092l-2.267-1.439z" />
+                        <path fill="url(#fluentColorDrafts164)" d="m2.964 9.328l-.307.307a2.95 2.95 0 0 0-.772 1.355l-.87 3.385a.5.5 0 0 0 .61.609l3.385-.869c.512-.132.98-.398 1.354-.773l.307-.307s-1.285-.3-2.345-1.36s-1.362-2.347-1.362-2.347" />
+                        <path fill="url(#fluentColorDrafts165)" d="M10.529 1.764a2.621 2.621 0 1 1 3.707 3.707l-1.908 1.908L8.621 3.67z" />
+                        <path fill="url(#fluentColorDrafts166)" d="M8.266 4.026s.295 1.291 1.356 2.352a5.4 5.4 0 0 0 2.351 1.356L13.4 6.308s-1.29-.298-2.35-1.358A5.4 5.4 0 0 1 9.692 2.6z" />
+                        <defs>
+                            <linearGradient id="fluentColorDrafts160" x1="-.8" x2="2.543" y1="1.071" y2="11.475" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#36dff1" />
+                                <stop offset="1" stop-color="#0094f0" />
+                            </linearGradient>
+                            <linearGradient id="fluentColorDrafts161" x1="-.8" x2="2.543" y1="1.071" y2="11.475" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#36dff1" />
+                                <stop offset="1" stop-color="#0094f0" />
+                            </linearGradient>
+                            <linearGradient id="fluentColorDrafts162" x1="-.8" x2="2.543" y1="1.071" y2="11.475" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#36dff1" />
+                                <stop offset="1" stop-color="#0094f0" />
+                            </linearGradient>
+                            <linearGradient id="fluentColorDrafts163" x1="8.631" x2="10.281" y1="5.563" y2="10.095" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#ffa43d" />
+                                <stop offset="1" stop-color="#fb5937" />
+                            </linearGradient>
+                            <linearGradient id="fluentColorDrafts164" x1=".187" x2="4.275" y1="10.908" y2="14.972" gradientUnits="userSpaceOnUse">
+                                <stop offset=".255" stop-color="#ffd394" />
+                                <stop offset="1" stop-color="#ff921f" />
+                            </linearGradient>
+                            <linearGradient id="fluentColorDrafts165" x1="13.669" x2="11.316" y1="2.324" y2="4.537" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#f97dbd" />
+                                <stop offset="1" stop-color="#dd3ce2" />
+                            </linearGradient>
+                            <linearGradient id="fluentColorDrafts166" x1="10.921" x2="7.295" y1="6.114" y2="4.528" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#ff921f" />
+                                <stop offset="1" stop-color="#ffe994" />
+                            </linearGradient>
+                            <radialGradient id="fluentColorDrafts167" cx="0" cy="0" r="1" gradientTransform="rotate(137.996 2.141 6.164)scale(11.5347 4.93393)" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#4a43cb" />
+                                <stop offset="1" stop-color="#4a43cb" stop-opacity="0" />
+                            </radialGradient>
+                            <radialGradient id="fluentColorDrafts168" cx="0" cy="0" r="1" gradientTransform="rotate(137.996 2.141 6.164)scale(11.5347 4.93393)" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#4a43cb" />
+                                <stop offset="1" stop-color="#4a43cb" stop-opacity="0" />
+                            </radialGradient>
+                            <radialGradient id="fluentColorDrafts169" cx="0" cy="0" r="1" gradientTransform="rotate(137.996 2.141 6.164)scale(11.5347 4.93393)" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#4a43cb" />
+                                <stop offset="1" stop-color="#4a43cb" stop-opacity="0" />
+                            </radialGradient>
+                        </defs>
+                    </g>
+                </svg>
+            </button>
+            <button class="remove w-10 h-10 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-full" viewBox="0 0 24 24">
+                    <g fill="none">
+                        <path fill="url(#fluentColorDismissCircle240)" d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2" />
+                        <path fill="url(#fluentColorDismissCircle241)" d="m15.53 8.47l-.084-.073a.75.75 0 0 0-.882-.007l-.094.08L12 10.939l-2.47-2.47l-.084-.072a.75.75 0 0 0-.882-.007l-.094.08l-.073.084a.75.75 0 0 0-.007.882l.08.094L10.939 12l-2.47 2.47l-.072.084a.75.75 0 0 0-.007.882l.08.094l.084.073a.75.75 0 0 0 .882.007l.094-.08L12 13.061l2.47 2.47l.084.072a.75.75 0 0 0 .882.007l.094-.08l.073-.084a.75.75 0 0 0 .007-.882l-.08-.094L13.061 12l2.47-2.47l.072-.084a.75.75 0 0 0 .007-.882z" />
+                        <defs>
+                            <linearGradient id="fluentColorDismissCircle240" x1="5.125" x2="18.25" y1="3.25" y2="22.625" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#f83f54" />
+                                <stop offset="1" stop-color="#ca2134" />
+                            </linearGradient>
+                            <linearGradient id="fluentColorDismissCircle241" x1="8.685" x2="12.591" y1="12.332" y2="16.392" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#fdfdfd" />
+                                <stop offset="1" stop-color="#fecbe6" />
+                            </linearGradient>
+                        </defs>
+                    </g>
+                </svg>
+            </button>
+
+        </div>
     </div>
 </form>
