@@ -1,0 +1,8 @@
+.buttons-container {
+    display: none;
+}
+
+.task-content {
+    text-decoration-line: line-through;
+    width: calc(10/12 * 100%);
+}

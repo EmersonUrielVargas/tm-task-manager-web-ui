@@ -6,3 +6,5 @@ export interface ITask {
     status: ETaskStatus,
     title: string
 }
+
+export interface IEditableTask extends Partial<Omit<ITask, 'id'>>{}

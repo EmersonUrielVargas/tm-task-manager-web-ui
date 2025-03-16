@@ -1,8 +1,23 @@
-<h1>{{title}}</h1>
-<div class="flex w-full flex-col box-border gap-1.5 px-1">
-    @for (task of tasks(); track $index; let index = $index) {
-        <div class="flex flex-grow-1">
-            <task [task]="task" class="w-full"></task>
+
+<div class="flex flex-col h-full">
+    <h1>{{title}}</h1>
+    <div class="flex flex-col relative h-screen">
+        <div class="flex w-full max-h-8/10 overflow-y-scroll overflow-x-hidden flex-col box-border gap-1.5 px-3 py-2">
+            @for (task of tasks(); track $index; let index = $index) {
+                <div class="flex flex-grow-1 snap-end">
+                    <task
+                        [task]="task"
+                        class="w-full"
+                        (removeTask)="removeOneTask($event)"
+                        (updateTask)="updateTask($event)"
+                    ></task>
+                </div>
+            }
         </div>
-    }
+        <add-new-task 
+            class="absolute w-full bottom-0"
+            (taskNew)="registerNewTask($event)"
+        ></add-new-task>
+    </div>
 </div>
+    
