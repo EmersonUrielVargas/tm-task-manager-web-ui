@@ -62,8 +62,8 @@ export class TaskComponent implements OnInit {
     if (target.checked) {
       statusChange = ETaskStatus.COMPLETE;
     }
+    this.taskEditable.update((task) =>({ ...task, status: statusChange }));
     this.updateTask.emit(this.taskEditable());
-    this.taskEditable.update((task) => ({ ...task, status: statusChange }));
   }
 
   changeEditView(show: boolean = true) {
