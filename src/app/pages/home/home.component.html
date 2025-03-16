@@ -1,23 +1,27 @@
 
-<div class="flex flex-col h-full">
-    <h1>{{title}}</h1>
-    <div class="flex flex-col relative h-screen">
-        <div class="flex w-full max-h-8/10 overflow-y-scroll overflow-x-hidden flex-col box-border gap-1.5 px-3 py-2">
-            @for (task of tasks(); track $index; let index = $index) {
-                <div class="flex flex-grow-1 snap-end">
-                    <task
-                        [task]="task"
-                        class="w-full"
-                        (removeTask)="removeOneTask($event)"
-                        (updateTask)="updateTask($event)"
-                    ></task>
-                </div>
-            }
+<div class="flex h-screen w-full justify-center">
+    <div class="flex max-h-full flex-col md:w-4/6 justify-center box-border p-0">
+        <div class="sticky px-4 pt-2 text-center flex-shrink-0">
+            <h1 class="font-medium">{{title}}</h1>
         </div>
-        <add-new-task 
-            class="absolute w-full bottom-0"
-            (taskNew)="registerNewTask($event)"
-        ></add-new-task>
+        <div class="flex flex-col w-full h-full box-border justify-between border-4 border-red-700 ">
+            <div class="flex w-full max-h-[370px] pb-20 overflow-y-scroll overflow-x-hidden flex-col box-border gap-2 px-4 py-2">
+                @for (task of tasks(); track $index; let index = $index) {
+                    <div class="flex flex-grow-1">
+                        <task
+                            [task]="task"
+                            class="w-full"
+                            (removeTask)="removeOneTask($event)"
+                            (updateTask)="updateTask($event)"
+                        ></task>
+                    </div>
+                }
+            </div>
+            <add-new-task 
+                class="sticky w-full bottom-0 flex-shrink-0"
+                (taskNew)="registerNewTask($event)"
+            ></add-new-task>
+        </div>
     </div>
 </div>
     
