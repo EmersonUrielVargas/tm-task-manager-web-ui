@@ -1,16 +1,28 @@
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { computed, Injectable, signal, WritableSignal } from '@angular/core';
 import { GlobalService } from '../global/global.service';
 import { IEditableTask, ITask } from '@app/interfaces/ITask';
 import { Observable, of } from 'rxjs';
 import { environments } from '@envs/environments';
 import { v4 as uuidv4 } from 'uuid';
+import { ETaskStatus } from '@app/enum/ETaskStatus';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TasksService {
   
-  tasksList: WritableSignal<ITask[]> = signal([] as ITask[]);
+  private tasksList: WritableSignal<ITask[]> = signal([] as ITask[]);
+  private currentFilter = signal<string>('');
+  taskFiltered = computed(()=>{
+    if(!this.currentFilter()){
+      return this.tasksList();
+    }else{
+      return this.tasksList().filter((task) =>{
+        return (task.status === this.currentFilter());
+    });
+    }
+
+  });
   isLoading = signal(false);
 
   constructor(
@@ -58,6 +70,11 @@ export class TasksService {
         console.log('Fail Updating task')
       }
     });
+  }
+
+  filterTask(filter: ETaskStatus| string){
+    this.isLoading.set(true);
+    this.currentFilter.set(filter);
   }
 
   addNewTask(newTask: IEditableTask){

@@ -1,4 +1,4 @@
-<div class="task-container transition-all delay-75 w-full flex gap-2 py-3 px-1 box-border items-center rounded-sm bg-gray-50 border-amber-50 border shadow-sm shadow-gray-400">
+<div class="task-container delay-75 w-full flex gap-2 sm:gap-3 py-3 px-1 box-border justify-left items-center rounded-sm bg-gray-50 border-amber-50 border shadow-sm shadow-gray-400">
     @if(showEditView()){
         <form-task 
             class="w-full"
@@ -7,24 +7,26 @@
             (taskChange)="updateDataTask($event)"
         ></form-task>
     }@else{
-        <div class="flex peer h-10 rounded-full cursor-pointer w-10 justify-center items-center">
-            <label [for]="`${task.id}-checkTask`" class="relative rounded-full w-4/5 h-4/5 border border-gray-300 bg-gray-200 has-checked:bg-amber-100 has-checked:border-amber-300 p-1">
+        <div class="flex peer size-8 rounded-full cursor-pointer mx-2 justify-items-start items-center">
+            <label [for]="`${task.id}-checkTask`" class="relative rounded-full size-8 border border-gray-300 bg-gray-200 has-checked:bg-amber-100 has-checked:border-amber-300 p-1">
                 <input type="checkbox" [id]="`${task.id}-checkTask`" class="sr-only peer" [checked]="isCheckedTask()" (change)="onChangeStatus($event)"/>
                 <span class="w-full h-full inline-block bg-gray-300 rounded-full peer-checked:bg-amber-400 "></span>
             </label>
         </div>
-        <div [class.task-content]="isCheckedTask()" class="flex flex-col w-7/12 gap-1 whitespace-normal">
+        <div [class.task-content]="isCheckedTask()" class="flex flex-col w-9/12 gap-1 whitespace-normal justify-items-start ">
             <h3 class="font-bold">{{taskEditable().title}}</h3>
             <p>{{taskEditable().description}}</p>
-            <p>{{taskEditable().status}}</p>
         </div>
-        <div [class.buttons-container]="isCheckedTask()" class="w-3/12 justify-center flex items-center gap-1">
+        <div [class.buttons-container]="isCheckedTask()" class="w-2/8 sm:w-2/12 justify-end flex flex-col xs:flex-row items-center gap-1 mr-4">
             <button class="bg-green-50 border
-                    border-green-200 w-9 h-9 justify-items-center
-                rounded-full"
+                    border-green-200 size-9 justify-items-center
+                    active:outline-2 outline-green-600 outline-offset-2
+                    active:shadow-gray-500 active:shadow-sm active:bg-green-100
+                    hover:shadow-gray-500 hover:shadow-sm hover:bg-green-100
+                    rounded-full"
                 type="button"
                 (click)="changeEditView()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3/5 fill-amber-600" viewBox="0 0 24 24">
                     <g fill="none" stroke="#4d9647" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1">
                         <path stroke-dasharray="20" stroke-dashoffset="20" d="M3 21h18">
                             <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.08s" values="20;0" />
@@ -41,10 +43,13 @@
             </button>
             <button
                 type="button"
-                class="w-10 h-10 rounded-full bg-red-50 border border-red-200 justify-items-center"
+                class="size-9 rounded-full bg-red-50 border border-red-200 justify-items-center
+                    active:outline-2 outline-red-700 outline-offset-2
+                    active:shadow-gray-500 active:shadow-sm active:bg-red-100
+                    hover:shadow-gray-500 hover:shadow-sm hover:bg-red-100"
                 (click)="deleteTask()"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3/5" viewBox="0 0 24 24">
                     <path fill="none" stroke="#8c0f0f" stroke-dasharray="12" stroke-dashoffset="12" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.4" d="M12 12l7 7M12 12l-7 -7M12 12l-7 7M12 12l7 -7">
                         <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.12s" values="12;0" />
                     </path>

@@ -1,10 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
 
+@theme {
+    --breakpoint-xs: 23rem;
+}
+
 html, body {
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: 100vh;
     box-sizing: border-box;
 }
 

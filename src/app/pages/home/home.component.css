@@ -1,0 +1,22 @@
+.customScrollBar::-webkit-scrollbar {
+    width: 12px;
+}
+
+.customScrollBar::-webkit-scrollbar-track {
+    background: var(--color-gray-200);
+    border-radius: 4px;
+}
+
+.customScrollBar::-webkit-scrollbar-thumb {
+    background: var(--color-amber-600);
+    border-radius: 60px;
+}
+
+.customScrollBar::-webkit-scrollbar-thumb:hover {
+    background: var(--color-amber-800);
+    width: 12px;
+}
+
+.customSelect:focus-visible {
+    outline-color: red ;
+}

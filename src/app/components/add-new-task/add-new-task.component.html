@@ -1,15 +1,16 @@
-<div class="transition-all relative flex flex-col w-full h-30 z-90 justify-end">
-    <div class="absolute w-full h-full blur-lg bg-white">
-    </div>
-    
+<div class="relative flex w-full mt-1">
     @if (showFormRegister()) {
-        <div class=" relative w-full flex box-border py-6  border-4 border-b-0 inset-shadow-sm bg-amber-50 inset-shadow-orange-300 border-orange-300 justify-center rounded-t-xl">
+        <div class=" relative w-full h-full flex box-border py-6  border-4 border-b-0 inset-shadow-sm bg-amber-50 inset-shadow-orange-300 border-orange-300 justify-center rounded-t-xl">
             <form-task class="w-full" (cancel)="enableFormRegister(false)" (taskChange)="saveNewTask($event)"></form-task> 
         </div>
     }@else{
-        <div class="relative flex w-full bg-orange-200 min-h-15 justify-center overflow-visible rounded-t-xl">
+        <div class="relative flex w-full bg-orange-200  min-h-15 max-h-20 h-15 justify-center overflow-visible rounded-t-xl">
             <button class="bg-amber-500 rounded-full
-                h-18 w-18 absolute -top-6 flex justify-center items-center text-white"
+                h-14 w-14 absolute -top-6 flex justify-center
+                items-center text-white
+                active:outline-2 outline-amber-600 outline-offset-2
+                active:bg-amber-600
+                hover:bg-amber-600"
                 (click)="enableFormRegister(true)">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-3/6 h-3/6" viewBox="0 0 24 24">
                     <g fill="none" stroke="#fff" stroke-dasharray="16" stroke-dashoffset="16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.7">
