@@ -1,42 +1,81 @@
-# TaskManager Web UI
+<h1 align="center">📝 Task Manager Web-ui</h1>
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
+<p align="center">
+  Interfaz de usuario para gestionar tareas utilizando <b>Angular</b> y <b>Tailwind CSS</b>.  
+  Permite crear, visualizar, actualizar y eliminar tareas mediante la integración con una API RESTful.
+</p>
 
-## Development server
+<p align="center">
+  <img src="https://img.shields.io/badge/Angular-17-red?style=for-the-badge&logo=angular">
+  <img src="https://img.shields.io/badge/Tailwind%20CSS-3.4-blue?style=for-the-badge&logo=tailwind-css">
+  <img src="https://img.shields.io/badge/REST%20API-Task%20Manager-green?style=for-the-badge&logo=api">
+</p>
 
-To start a local development server, run:
+---
+
+## 📌 **Características**
+
+
+✅ **CRUD Completo**: Crear, leer, actualizar y eliminar tareas.  
+✅ **Angular + Tailwind CSS**: Diseño moderno y responsivo.  
+✅ **Integración con API RESTful**: Conexión fluida con la API de gestión de tareas.  
+✅ **Manejo de Estado Reactivo** con **Signals**.  
+✅ **Filtrado de Tareas** por estado (Todas, Pendiente, Completado).  
+✅ **Responsive Design**: Adaptado para dispositivos móviles y escritorio. 
+
+---
+## 🚀 **Requisitos Previos**
+
+Antes de comenzar, asegúrate de tener instalados los siguientes elementos:
+
+- **Node.js** (v18 o superior) → [Descargar](https://nodejs.org/)
+- **Angular CLI** (v17 o superior) → [Instalar](https://angular.io/cli)
+- **Git** (para clonar el repositorio)
+
+---
+
+## 📥 **Instalación**
+
+1️⃣ **Clonar el repositorio**:
+
+```bash
+git clone https://github.com/EmersonUrielVargas/tm-task-manager-web-ui.git
+cd tm-task-manager-web-ui
+```
+2️⃣ **Instalacion de dependencias:**:
+
+```bash
+npm install
+```
+
+3️⃣ **Ejecutar la aplicación:**:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+4️⃣ **La API estara disponible en **:
 
 ```bash
-ng generate component component-name
+➡️ http://localhost:4200
 ```
+---
+## 📊 API REST
+La app se conecta a un backend para el consumo de servicios, se encuentra en el siguiente repositorio para mayor información:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+ - GitHub: [tm-task-manager-mngr](https://github.com/EmersonUrielVargas/tm-task-manager-mngr)
+---
 
-```bash
-ng generate --help
-```
+## 📦 Despliegue en Github Pages con Github Actions
 
-## Building
+  La app contiene el workflow para su despliegue engithub pages mediante github actions
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 📧 **Contacto**
 
-This will compile your project and store the build artifacts in the `build/` directory. By default, the production build optimizes your application for performance and speed.
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- Autor: Emerson Vargas
+- GitHub: [@emersonurielvargas](https://github.com/EmersonUrielVargas)
+- Email: emrvargaitaz@gmail.com
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
