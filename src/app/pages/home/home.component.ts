@@ -1,9 +1,8 @@
-import { Component, OnChanges, OnInit, signal, SimpleChanges } from '@angular/core';
+import { Component, computed, OnChanges, OnInit, Signal, signal, SimpleChanges } from '@angular/core';
 import { IEditableTask, ITask } from '@app/interfaces/ITask';
 import { TaskComponent } from '@app/components/task/task.component';
 import { ETaskStatus } from '@app/enum/ETaskStatus';
 import { AddNewTaskComponent } from '@app/components/add-new-task/add-new-task.component';
-import { Observable } from 'rxjs';
 import { TasksService } from '@app/services/tasks/tasks.service';
 
 @Component({
@@ -15,7 +14,8 @@ import { TasksService } from '@app/services/tasks/tasks.service';
 export class HomeComponent implements OnInit{
 
   title = 'Bienvenido a tu administrador de Tareas'
-  tasks = signal<ITask[]>([] as ITask[]);
+  tasks!:Signal<ITask[]>;
+  statusTask = Object.values(ETaskStatus);
 
   constructor(
     private taskService: TasksService
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit{
   }
   
   ngOnInit(): void {
-    this.tasks = this.taskService.tasksList;
+    this.tasks = this.taskService.taskFiltered;
   }
 
   registerNewTask(newTask: IEditableTask){
@@ -39,8 +39,8 @@ export class HomeComponent implements OnInit{
     this.taskService.editTask(taskUpdated.id, taskUpdated as IEditableTask);
   }
 
-
-
-
-
+  filterTask(event: any){
+    const statusFilter = event as HTMLSelectElement;
+    this.taskService.filterTask(statusFilter.value);
+  }
 }

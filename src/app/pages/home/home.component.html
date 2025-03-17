@@ -1,27 +1,44 @@
 
-<div class="flex h-screen w-full justify-center">
-    <div class="flex max-h-full flex-col md:w-4/6 justify-center box-border p-0">
-        <div class="sticky px-4 pt-2 text-center flex-shrink-0">
+<div class="flex justify-center w-full">
+    <div class="flex flex-col md:max-w-150 justify-items-center h-screen">
+        <div class="grow-0 row-auto px-4 pt-2 text-center">
             <h1 class="font-medium">{{title}}</h1>
         </div>
-        <div class="flex flex-col w-full h-full box-border justify-between border-4 border-red-700 ">
-            <div class="flex w-full max-h-[370px] pb-20 overflow-y-scroll overflow-x-hidden flex-col box-border gap-2 px-4 py-2">
-                @for (task of tasks(); track $index; let index = $index) {
-                    <div class="flex flex-grow-1">
-                        <task
-                            [task]="task"
-                            class="w-full"
-                            (removeTask)="removeOneTask($event)"
-                            (updateTask)="updateTask($event)"
-                        ></task>
-                    </div>
-                }
+        <div class="grow-7 flex flex-col w-full py-2 px-4 h-full
+            pb-10 overflow-y-auto customScrollBar overflow-x-hidden box-border gap-3
+            ">
+            <div class="sticky h-16 flex flex-col w-full border-b-2 border-gray-300">
+                <label for="filterStatus"
+                    class="text-xs text-amber-800"
+                    >Filtrar por estado:</label>
+                <select 
+                    class="border-2 border-amber-600 rounded-md appearance-none p-2 text-amber-900
+                        focus-visible:outline-none focus-visible:border-amber-800
+                        forced-colors:appearance-none"
+                    name="filter"
+                    id="filterStatus"
+                    (change)="filterTask($event.target)">
+                    <option value="" >Todas</option>
+                    @for (status of statusTask; track $index) {
+                        <option [value]="status" >{{status}}</option>
+                    }
+                </select>
             </div>
-            <add-new-task 
-                class="sticky w-full bottom-0 flex-shrink-0"
-                (taskNew)="registerNewTask($event)"
-            ></add-new-task>
+            @for (task of tasks().reverse(); track $index; let index = $index) {
+                <div class="">
+                    <task
+                        [task]="task"
+                        class="w-full"
+                        (removeTask)="removeOneTask($event)"
+                        (updateTask)="updateTask($event)"
+                    ></task>
+                </div>
+            }
         </div>
+        <add-new-task 
+            class="basis-1 grow-2 w-full bottom-0 h-full"
+            (taskNew)="registerNewTask($event)"
+        ></add-new-task>
     </div>
 </div>
     
