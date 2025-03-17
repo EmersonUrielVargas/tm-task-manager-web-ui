@@ -36,4 +36,12 @@ export class GlobalService {
     }
     return this.http.put(url, body, options);
   }
+
+  delete( url: string, headers?: HttpHeaders, params?: HttpParams): Observable<any>{
+    const options ={
+      ...(headers && { headers: headers}),
+      ...(params && { params: params})
+    }
+    return this.http.delete(url,options);
+  }
 }

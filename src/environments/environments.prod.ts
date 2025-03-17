@@ -1,6 +1,4 @@
 export const environments ={
     CYPHER_KEY: 'W40Y88xYhDV~g4=I0w',
-    URL_TASKS: 'https://run.mocky.io/v3/b8ad6dfa-bc97-495b-aff8-46621dd2de30',
-    URL_HOTELS_MNGR: 'https://ag-web-app-hotels-mngr.azurewebsites.net/v1/api/hotels-mngr',
-    URL_API_USERS: 'https://agency-travel.free.beeceptor.com'
+    URL_TASKS: 'https://tm-web-app-task-mngr-gsaxhbbva3f2bubu.westcentralus-01.azurewebsites.net/v1/api/task-mngr/Tasks'
 }

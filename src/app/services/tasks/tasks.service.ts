@@ -1,9 +1,7 @@
 import { computed, Injectable, signal, WritableSignal } from '@angular/core';
 import { GlobalService } from '../global/global.service';
 import { IEditableTask, ITask } from '@app/interfaces/ITask';
-import { Observable, of } from 'rxjs';
 import { environments } from '@envs/environments';
-import { v4 as uuidv4 } from 'uuid';
 import { ETaskStatus } from '@app/enum/ETaskStatus';
 
 @Injectable({
@@ -38,23 +36,16 @@ export class TasksService {
     })
   }
 
-  private mockGlobal(): Observable<any>{
-    return of({
-      statusCode: '200',
-      description: 'Updated SucessFull'
-    })
-  }
-
   private setTasks(tasks: ITask[]){
     this.tasksList.set(tasks);
   }
 
   editTask(id: ITask['id'], taskUpdated: IEditableTask){
     this.isLoading.set(true);
-    this.mockGlobal().subscribe({
+    this.global.put(`${environments.URL_TASKS}/${id}`, taskUpdated).subscribe({
       next:(result) =>{
         this.isLoading.set(false);
-        if(!result.error)
+        if(!result?.error)
         this.tasksList.update((tasks) => {
           return tasks.map((task) =>{
             return (task.id === id)?
@@ -77,17 +68,13 @@ export class TasksService {
   }
 
   addNewTask(newTask: IEditableTask){
-    const newTaskRegister = {
-      id: uuidv4(),
-      ...newTask
-    } as ITask;
     this.isLoading.set(true);
-    this.mockGlobal().subscribe({
+    this.global.post(environments.URL_TASKS, newTask).subscribe({
       next:(result) =>{
         this.isLoading.set(false);
-        if(!result.error)
+        if(!result?.error)
         this.tasksList.update((tasks) => {
-          tasks.push(newTaskRegister);
+          tasks.push(result);
           return [...tasks];
         });
       },
@@ -99,10 +86,10 @@ export class TasksService {
 
   removeTask(id: ITask['id']){
     this.isLoading.set(true);
-    this.mockGlobal().subscribe({
+    this.global.delete(`${environments.URL_TASKS}/${id}`).subscribe({
       next:(result) =>{
         this.isLoading.set(false);
-        if(!result.error)
+        if(!result?.error)
         this.tasksList.update((tasks) => {
           return tasks.filter(task => task.id !== id);
         });
