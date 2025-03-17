@@ -19,9 +19,8 @@ export class TasksService {
     }else{
       return this.tasksList().filter((task) =>{
         return (task.status === this.currentFilter());
-    });
+      });
     }
-
   });
   isLoading = signal(false);
 
@@ -89,7 +88,7 @@ export class TasksService {
         if(!result.error)
         this.tasksList.update((tasks) => {
           tasks.push(newTaskRegister);
-          return tasks;
+          return [...tasks];
         });
       },
       error:(error: any)=>{
