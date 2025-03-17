@@ -45,7 +45,7 @@ export class TasksService {
     this.global.put(`${environments.URL_TASKS}/${id}`, taskUpdated).subscribe({
       next:(result) =>{
         this.isLoading.set(false);
-        if(!result.error)
+        if(!result?.error)
         this.tasksList.update((tasks) => {
           return tasks.map((task) =>{
             return (task.id === id)?
@@ -72,7 +72,7 @@ export class TasksService {
     this.global.post(environments.URL_TASKS, newTask).subscribe({
       next:(result) =>{
         this.isLoading.set(false);
-        if(!result.error)
+        if(!result?.error)
         this.tasksList.update((tasks) => {
           tasks.push(result);
           return [...tasks];
@@ -89,7 +89,7 @@ export class TasksService {
     this.global.delete(`${environments.URL_TASKS}/${id}`).subscribe({
       next:(result) =>{
         this.isLoading.set(false);
-        if(!result.error)
+        if(!result?.error)
         this.tasksList.update((tasks) => {
           return tasks.filter(task => task.id !== id);
         });
